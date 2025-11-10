@@ -1,9 +1,10 @@
 ---
-title: 'Simulate Collusion: Application Examples for Cartel Simulation based on stochastic interest rates'
+title: 'Estimate Dark Rate of Crime'
 geometry: margin=1cm
 output:
   html_document:
     df_print: paged
+  pdf_document: default
   word_document: default
 ---
 
@@ -56,7 +57,7 @@ result <- wrap_optim(data, params0, LF, grad=LF_gradient)
 result_table <- get_results(data, result)
 sim.values <- c(parm_sim, E_hat=mean(data0[,'E']), C_hat=mean(data0[,'C']))
 result_table <- cbind(sim.values, result_table)
-result_table
+kable(result_table)
 ```
 ### Estimate Dark Rate: 
 DRC = 1 - R/C

@@ -11,7 +11,7 @@
 
 
 
-<title>Simulate Collusion: Application Examples for Cartel Simulation based on stochastic interest rates</title>
+<title>Estimate Dark Rate of Crime</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1619,8 +1619,7 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">Simulate Collusion: Application Examples
-for Cartel Simulation based on stochastic interest rates</h1>
+<h1 class="title toc-ignore">Estimate Dark Rate of Crime</h1>
 
 </div>
 
@@ -1671,12 +1670,85 @@ result &lt;- wrap_optim(data, params0, LF, grad = LF_gradient)</code></pre>
 <pre class="r"><code>result_table &lt;- get_results(data, result)
 sim.values &lt;- c(parm_sim, E_hat = mean(data0[, &quot;E&quot;]), C_hat = mean(data0[, &quot;C&quot;]))
 result_table &lt;- cbind(sim.values, result_table)
-result_table</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["sim.values"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["estimates"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ci.lower"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ci.upper"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.40000","2":"0.4551","3":"0.0539","4":"0.3495","5":"0.5606","_rn_":"c"},{"1":"0.30000","2":"0.2952","3":"0.0175","4":"0.2608","5":"0.3296","_rn_":"phi"},{"1":"-0.20000","2":"-0.2648","3":"0.0397","4":"-0.3427","5":"-0.1869","_rn_":"eta"},{"1":"0.50000","2":"0.4619","3":"0.0467","4":"0.3704","5":"0.5534","_rn_":"d"},{"1":"0.40000","2":"0.3684","3":"0.0355","4":"0.2988","5":"0.4379","_rn_":"xi"},{"1":"0.20000","2":"0.2917","3":"0.0477","4":"0.1982","5":"0.3851","_rn_":"alpha"},{"1":"0.82958","2":"0.8248","3":"0.0750","4":"0.6779","5":"0.9319","_rn_":"E_hat"},{"1":"0.72050","2":"0.7257","3":"0.0806","4":"0.5754","5":"0.8521","_rn_":"C_hat"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+kable(result_table)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sim.values</th>
+<th align="right">estimates</th>
+<th align="right">SE</th>
+<th align="right">ci.lower</th>
+<th align="right">ci.upper</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">c</td>
+<td align="right">0.40000</td>
+<td align="right">0.4551</td>
+<td align="right">0.0539</td>
+<td align="right">0.3495</td>
+<td align="right">0.5606</td>
+</tr>
+<tr class="even">
+<td align="left">phi</td>
+<td align="right">0.30000</td>
+<td align="right">0.2952</td>
+<td align="right">0.0175</td>
+<td align="right">0.2608</td>
+<td align="right">0.3296</td>
+</tr>
+<tr class="odd">
+<td align="left">eta</td>
+<td align="right">-0.20000</td>
+<td align="right">-0.2648</td>
+<td align="right">0.0397</td>
+<td align="right">-0.3427</td>
+<td align="right">-0.1869</td>
+</tr>
+<tr class="even">
+<td align="left">d</td>
+<td align="right">0.50000</td>
+<td align="right">0.4619</td>
+<td align="right">0.0467</td>
+<td align="right">0.3704</td>
+<td align="right">0.5534</td>
+</tr>
+<tr class="odd">
+<td align="left">xi</td>
+<td align="right">0.40000</td>
+<td align="right">0.3684</td>
+<td align="right">0.0355</td>
+<td align="right">0.2988</td>
+<td align="right">0.4379</td>
+</tr>
+<tr class="even">
+<td align="left">alpha</td>
+<td align="right">0.20000</td>
+<td align="right">0.2917</td>
+<td align="right">0.0477</td>
+<td align="right">0.1982</td>
+<td align="right">0.3851</td>
+</tr>
+<tr class="odd">
+<td align="left">E_hat</td>
+<td align="right">0.82958</td>
+<td align="right">0.8248</td>
+<td align="right">0.0750</td>
+<td align="right">0.6779</td>
+<td align="right">0.9319</td>
+</tr>
+<tr class="even">
+<td align="left">C_hat</td>
+<td align="right">0.72050</td>
+<td align="right">0.7257</td>
+<td align="right">0.0806</td>
+<td align="right">0.5754</td>
+<td align="right">0.8521</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="estimate-dark-rate" class="section level3">
 <h3>Estimate Dark Rate:</h3>

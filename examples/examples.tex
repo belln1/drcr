@@ -1,0 +1,338 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{article}
+\usepackage{xcolor}
+\usepackage[margin=1cm]{geometry}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Simulate Collusion: Application Examples for Cartel Simulation based on stochastic interest rates},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Simulate Collusion: Application Examples for Cartel Simulation
+based on stochastic interest rates}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\subsubsection{Set Basic Values}\label{set-basic-values}
+
+Clear Environment
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+Load Packages
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(psych)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+\FunctionTok{library}\NormalTok{(drcr)}
+\end{Highlighting}
+\end{Shaded}
+
+Set Seed for Reproducibility
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Set Basic Values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{n }\OtherTok{\textless{}{-}} \FloatTok{1e+05}
+\NormalTok{decs }\OtherTok{\textless{}{-}} \DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Create Simulation Data}\label{create-simulation-data}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{parm\_sim0 }\OtherTok{\textless{}{-}} \FunctionTok{set\_parms}\NormalTok{()}
+\NormalTok{parm\_sim }\OtherTok{\textless{}{-}}\NormalTok{ parm\_sim0[}\DecValTok{3}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(parm\_sim0)]}
+\NormalTok{data0 }\OtherTok{\textless{}{-}} \FunctionTok{sim\_data}\NormalTok{(n, parm\_sim0)}
+\NormalTok{data }\OtherTok{\textless{}{-}}\NormalTok{ data0[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Estimate Parameters}\label{estimate-parameters}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{params0 }\OtherTok{\textless{}{-}} \FunctionTok{set\_inits}\NormalTok{()}
+\CommentTok{\# result \textless{}{-} wrap\_optim(data, params0, LF)}
+\NormalTok{result }\OtherTok{\textless{}{-}} \FunctionTok{wrap\_optim}\NormalTok{(data, params0, LF, }\AttributeTok{grad =}\NormalTok{ LF\_gradient)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## initial  value 0.777562 
+## iter  10 value 0.662612
+## iter  20 value 0.662543
+## iter  30 value 0.662426
+## iter  40 value 0.662415
+## iter  50 value 0.662412
+## iter  60 value 0.662410
+## iter  70 value 0.662410
+## iter  80 value 0.662410
+## iter  90 value 0.662410
+## iter 100 value 0.662410
+## iter 110 value 0.662410
+## final  value 0.662410 
+## converged
+\end{verbatim}
+
+\subsubsection{Show Results}\label{show-results}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{result\_table }\OtherTok{\textless{}{-}} \FunctionTok{get\_results}\NormalTok{(data, result)}
+\NormalTok{sim.values }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(parm\_sim, }\AttributeTok{E\_hat =} \FunctionTok{mean}\NormalTok{(data0[, }\StringTok{"E"}\NormalTok{]), }\AttributeTok{C\_hat =} \FunctionTok{mean}\NormalTok{(data0[, }\StringTok{"C"}\NormalTok{]))}
+\NormalTok{result\_table }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(sim.values, result\_table)}
+\NormalTok{result\_table}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       sim.values estimates     SE ci.lower ci.upper
+## c        0.40000    0.4551 0.0539   0.3495   0.5606
+## phi      0.30000    0.2952 0.0175   0.2608   0.3296
+## eta     -0.20000   -0.2648 0.0397  -0.3427  -0.1869
+## d        0.50000    0.4619 0.0467   0.3704   0.5534
+## xi       0.40000    0.3684 0.0355   0.2988   0.4379
+## alpha    0.20000    0.2917 0.0477   0.1982   0.3851
+## E_hat    0.82958    0.8248 0.0750   0.6779   0.9319
+## C_hat    0.72050    0.7257 0.0806   0.5754   0.8521
+\end{verbatim}
+
+\subsubsection{Estimate Dark Rate:}\label{estimate-dark-rate}
+
+DRC = 1 - R/C
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{DRC }\OtherTok{\textless{}{-}} \FunctionTok{get\_dark\_rate}\NormalTok{(}\FunctionTok{mean}\NormalTok{(data[, }\StringTok{"R"}\NormalTok{]), result\_table[}\StringTok{"C\_hat"}\NormalTok{, ]}\SpecialCharTok{$}\NormalTok{estimates)}
+\FunctionTok{cat}\NormalTok{(}\StringTok{"DRC: "}\NormalTok{, DRC, }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## DRC:  0.1773185
+\end{verbatim}
+
+\subsubsection{Show Summary Statistics}\label{show-summary-statistics}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{describe}\NormalTok{(data))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0680}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0485}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0583}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0777}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0971}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0680}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0971}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0388}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0388}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0388}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0583}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.1068}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.1068}}
+  >{\raggedleft\arraybackslash}p{(\linewidth - 26\tabcolsep) * \real{0.0971}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+vars
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+n
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+sd
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+median
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+trimmed
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+mad
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+max
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+range
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+skew
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+kurtosis
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+se
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Z & 1 & 1e+05 & 0.99934 & 0.7065016 & 1 & 0.9991750 & 0 & 0 & 2 & 2 &
+0.0009310 & -0.9965924 & 0.0022342 \\
+W & 2 & 1e+05 & 0.99956 & 0.7066716 & 1 & 0.9994500 & 0 & 0 & 2 & 2 &
+0.0006211 & -0.9975562 & 0.0022347 \\
+R\_prev & 3 & 1e+05 & 0.49799 & 0.4999985 & 0 & 0.4974875 & 0 & 0 & 1 &
+1 & 0.0080399 & -1.9999554 & 0.0015811 \\
+R & 4 & 1e+05 & 0.59702 & 0.4904993 & 1 & 0.6212750 & 0 & 0 & 1 & 1 &
+-0.3955930 & -1.8435246 & 0.0015511 \\
+\end{longtable}
+
+\subsubsection{Show Correlation Table}\label{show-correlation-table}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(}\FunctionTok{cor}\NormalTok{(data))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrr@{}}
+\toprule\noalign{}
+& Z & W & R\_prev & R \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Z & 1.0000000 & -0.0037261 & -0.0022118 & 0.1138241 \\
+W & -0.0037261 & 1.0000000 & 0.0077523 & 0.0952710 \\
+R\_prev & -0.0022118 & 0.0077523 & 1.0000000 & -0.0185120 \\
+R & 0.1138241 & 0.0952710 & -0.0185120 & 1.0000000 \\
+\end{longtable}
+
+\end{document}
