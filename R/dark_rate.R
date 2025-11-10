@@ -12,7 +12,16 @@ set_inits <- function(c = .5, phi = .5, eta = .5, d = 0.5, xi = .5, alpha = .5) 
   c(c = c, phi = phi, eta = eta, d = d, xi = xi, alpha = alpha)
 }
 
-# Objective Function
+#' Negative Log-Likelihood Function
+#'
+#' Negative Log-Likelihood for observed and estimated unobserved activity
+#' @param params Initial parameters for optimization: c(c, phi, eta, d, xi, alpha)
+#' @param data Observed data: (Z, W, R_prev, R)
+#'
+#' @return Decimal Value Negative Log-Likelihood
+#' @examples
+#' loglik <- LF(params, data);
+#' @export
 LF <- function(params, data) {
   pC <- pnorm(params['c'] + params['phi'] * data[, 'Z'] + params['eta'] * data[, 'R_prev'])
   pE <- pnorm(params['d'] + params['xi'] * data[, 'W'] + params['alpha'] * data[, 'R_prev'])
@@ -23,6 +32,16 @@ LF <- function(params, data) {
   return(-log_likelihood)
 }
 
+#' Gradient Function
+#'
+#' Gradient Function of Negative Log-Likelihood Function
+#' @param params Initial parameters for optimization: c(c, phi, eta, d, xi, alpha)
+#' @param data Observed data: (Z, W, R_prev, R)
+#'
+#' @return Gradient of negative Log-Likelihood at optimization point
+#' @examples
+#' grad <- LF_gradient(params, data);
+#' @export
 LF_gradient <- function(params, data) {
   z_C <- params['c'] + params['phi'] * data[, 'Z'] + params['eta'] * data[, 'R_prev']
   z_E <- params['d'] + params['xi'] * data[, 'W'] + params['alpha'] * data[, 'R_prev']
@@ -157,6 +176,7 @@ get_C_E <- function(data, parm){
 #' params0 <- set_inits()
 #' result <- wrap_optim(data, params0, LF)
 #' result_table <- get_results(data, result)
+#' @export
 get_results <- function(data, fit, decs=4){
   results_parms <- get_results_parm(fit, decs, nrow(data))
   results_C_H <- get_C_E(data, fit$par)
@@ -166,17 +186,15 @@ get_results <- function(data, fit, decs=4){
 
 #' Calculate Dark Rate
 #'
-#' Calculate Dark Rate based on observed und estimated unobserved activity
-#' @param observed binary vector (1 if observed event, 0 else)
-#' @param estimate binary vector (1 if estimated event, 0 else)
+#' Calculate Dark Rate based on observed and estimated unobserved activity
+#' @param observed number of observed events
+#' @param estimate number of estimated events
 #'
 #' @return Decimal number DRC = 1 - (observed/estimate)
 #' @examples
-#' parm_sim0 <- set_parms()
-#' parm_sim <- parm_sim0[3:length(parm_sim0)]
-#' data0 <- sim_data(n, parm_sim0)
-#' DRC <- get_dark_rate(sum(data0[,'R']), sum(data0[,'C']))
+#' DRC <- get_dark_rate(mean(data[,'R']), result_table['C_hat',]$estimates)
+#' DRC <- get_dark_rate(0.59702, 0.7257)
+#' @export
 get_dark_rate <- function(observed, estimate) {
   return((estimate - observed)/estimate)
 }
-#get_dark_rate(6, 9)

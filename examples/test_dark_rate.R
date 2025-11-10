@@ -1,8 +1,8 @@
 rm(list = ls())
-# library(drcr)
-library(assertthat)
-source(file = "R/simulate_crime.R")
-source(file = "R/dark_rate.R")
+library(drcr)
+# library(assertthat)
+# source(file = "R/simulate_crime.R")
+# source(file = "R/dark_rate.R")
 
 set.seed(123) # Set Seed for Reproducibility
 
@@ -21,14 +21,15 @@ result <- wrap_optim(data, params0, LF)
 #result <- wrap_optim(data, params0, LF, grad=LF_gradient)
 
 # Show Results
-result_table <- get_results(data, result, decs)
+result_table <- get_results(data, result)
 sim.values <- c(parm_sim, E_hat=mean(data0[,'E']), C_hat=mean(data0[,'C']))
 result_table <- cbind(sim.values, result_table)
 result_table
 
 # Estimate Dark Rate: DRC = 1 - R/C
-DRC <- get_dark_rate(sum(data0[,'R']), sum(data0[,'C']))
+DRC <- get_dark_rate(mean(data[,'R']), result_table['C_hat',]$estimates)
 DRC
+
 ################################################################################################
 
 

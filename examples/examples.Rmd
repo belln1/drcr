@@ -1,30 +1,75 @@
 ---
-title: "examples"
-author: "NB"
-date: "2025-11-08"
-output: html_document
+title: 'Simulate Collusion: Application Examples for Cartel Simulation based on stochastic interest rates'
+geometry: margin=1cm
+output:
+  html_document:
+    df_print: paged
+  word_document: default
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+### Set Basic Values
+```{r include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, tidy=TRUE, tidy.opts = list(width.cutoff=80))
 ```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+Clear Environment
+```{r}
+rm(list = ls())
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+Load Packages
+```{r echo=T, results='hide'}
+library(psych)
+library(kableExtra)
+library(drcr)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+Set Seed for Reproducibility
+```{r}
+set.seed(123)
+```
+
+Set Basic Values
+```{r}
+n <- 100000
+decs <- 4
+```
+
+### Create Simulation Data
+```{r}
+parm_sim0 <- set_parms()
+parm_sim <- parm_sim0[3:length(parm_sim0)]
+data0 <- sim_data(n, parm_sim0)
+data <- data0[,1:4]
+
+```
+
+### Estimate Parameters
+```{r}
+params0 <- set_inits()
+#result <- wrap_optim(data, params0, LF)
+result <- wrap_optim(data, params0, LF, grad=LF_gradient)
+```
+
+### Show Results
+```{r}
+result_table <- get_results(data, result)
+sim.values <- c(parm_sim, E_hat=mean(data0[,'E']), C_hat=mean(data0[,'C']))
+result_table <- cbind(sim.values, result_table)
+result_table
+```
+### Estimate Dark Rate: 
+DRC = 1 - R/C
+```{r}
+DRC <- get_dark_rate(mean(data[,'R']), result_table['C_hat',]$estimates)
+cat("DRC: ", DRC, "\n")
+```
+
+### Show Summary Statistics
+```{r}
+kable(describe(data))
+```
+### Show Correlation Table
+```{r}
+kable(cor(data))
+```
