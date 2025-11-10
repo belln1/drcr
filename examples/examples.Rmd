@@ -33,7 +33,6 @@ set.seed(123)
 Set Basic Values
 ```{r}
 n <- 100000
-decs <- 4
 ```
 
 ### Create Simulation Data
