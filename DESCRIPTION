@@ -3,7 +3,7 @@ Type: Package
 Title: Estimate Dark Rate of Crime
 Version: 0.1.0
 Authors@R: c(person("Nicole", "Bellert", , email="bell@zhaw.ch", role = c("aut", "cre")))
-Description: Econometric method to estimate the dark figure and dark rate of illegal activity. This method is described in detail in the paper "Estimating Dark Figures of Crime".
+Description: Econometric method to estimate the dark figure and dark rate of illegal activity. This method is described in detail in the paper "Estimating Dark Figures of Crime" by Bellert, Guenster and Kozbur (2025).
     The package provides the function wrap_optim() as a wrapper to the optimization function optim(), LF() as objective function and sim_data() to generates a ground-truth dataset to test the method.
 License: GPL-3
 Encoding: UTF-8
